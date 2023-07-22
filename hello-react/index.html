@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      // const data = React.useState(0); const count = data[0]; const countUp = data[1]과 동일
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter((current) => current + 1);
+        // 아래와 동일하나 위와 같이 하면 react가 현재 state를 보장해줌
+        //setCounter(counter + 1);
+        // 위 함수는 아래와 동일.
+        // counter = counter + 1; ReactDOM.render(<App />, root);
+      };
+
+      return (
+        <div>
+          <h3>total click: {counter}</h3>
+          <button onClick={onClick}>click me</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+
+<!--
+  state이전 코드
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    let counter = 0;
+    function countUp() {
+      counter++;
+      ReactDOM.render(<App />, root);
+    }
+    const App = () => (
+      <div>
+        <h3>total click: {counter}</h3>
+        <button onClick={countUp}>click me</button>
+      </div>
+    );
+    ReactDOM.render(<App />, root);
+  </script>
+-->
+
+<!--
+react 18버전
+  const DOM = ReactDOM.createRoot(document.getElementById("root"))
+  let counter = 0;
+
+  function countUp() {
+  counter++;
+  Render();
+  }
+
+  function Render() {
+  return (
+  DOM.render(
+  [Container /]
+  )
+  )
+  }
+
+  function Container() {
+  return (
+  [div]
+  [h3]Total clicks: {counter}[/h3]
+  [button onClick={countUp}]Click me[/button]
+  [/div]
+  )
+  };
+  Render();
+
+-->
+<!--
+  -hello react할 때 코드
+  <script type="text/babel">
+    const root = document.getElementById("root");
+
+    const Title = () => (
+      <span
+        id="mySpan"
+        style={{ color: "red" }}
+        onMouseEnter={() => alert("enter")}>
+        content text
+      </span>
+    );
+
+    const Button = () => (
+      <button
+        id="mySpan"
+        style={{ color: "red" }}
+        onClick={() => alert("test")}>
+        click
+      </button>
+    );
+
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+    ReactDOM.render(<Container />, root);
+  </script>
+-->
+
+<!-- 
+거의 사용하지 않는 react 사용 방식. 다만 기본 원리는 이거임.
+<script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script>
+    // 어려운 방식
+    const root = document.getElementById("root");
+    const mySpan = React.createElement(
+      "span",
+      { id: "mySpan", style: { color: "red" } },
+      "content text"
+    );
+    const myBtn = React.createElement(
+      "button",
+      {
+        onClick: () => alert("test"),
+      },
+      "Click"
+    );
+    const container = React.createElement("div", null, [mySpan, myBtn]);
+    ReactDOM.render(container, root);
+  </script>
+
+-->
