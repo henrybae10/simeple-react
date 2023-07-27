@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // function Button(props) {
+    function Button({ text, isBigger }) {
+      return (
+        <button
+          style={{
+            backgroundColor: "lightGreen",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize: isBigger ? 30 : 12,
+          }}>
+          {text}
+        </button>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          {/*내가 정의한 컴포넌트의 속성명 같은건 내가 아무렇게나 정하면 됨*/}
+          <Button text="Save Changes" isBigger={true} />
+          <Button text="Confirm" />
+          {/*
+			이 것과 동일
+			Button({test="Confirm"});
+			*/}
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
