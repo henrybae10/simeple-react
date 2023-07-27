@@ -8,7 +8,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     // function Button(props) {
-    function Button({ text, isBigger }) {
+    function Button({ text, onClick }) {
       return (
         <button
           style={{
@@ -17,19 +17,23 @@
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
-            fontSize: isBigger ? 30 : 12,
-          }}>
+          }}
+          onClick={onClick}>
           {text}
         </button>
       );
     }
 
+    const MemorizedBtn = React.memo(Button);
+
     function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Changed");
       return (
         <div>
           {/*내가 정의한 컴포넌트의 속성명 같은건 내가 아무렇게나 정하면 됨*/}
-          <Button text="Save Changes" isBigger={true} />
-          <Button text="Confirm" />
+          <MemorizedBtn text={value} onClick={changeValue} />
+          <MemorizedBtn text="Confirm" />
           {/*
 			이 것과 동일
 			Button({test="Confirm"});
