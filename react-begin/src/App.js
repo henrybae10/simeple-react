@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./App.module.css";
 
 function App() {
@@ -6,6 +6,17 @@ function App() {
 	const [counter, setCounter] = useState(0);
 	const onClick = () => setCounter((prev) => prev + 1);
 	console.log("render");
+	const iRunOnlyOnce = () => {
+		console.log("render only once");
+	};
+
+	useEffect(iRunOnlyOnce, []);
+	/*
+	위와 동일
+	useEffect(() => {
+		console.log("render only once");
+	}, []);
+	*/
 	return (
 		<div>
 			<h1 className={styles.title}>Hello!</h1>
