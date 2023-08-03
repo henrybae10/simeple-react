@@ -29,6 +29,11 @@ function App() {
 	// pending 상태에 있기 때문에 적어도 해당 렌더링 과정에서는 결과값이 반영될 수도, 그러지 않을 수도 있음
 	// onSubmit 혹은 ToDos가 변경될 때만 출력하고 싶으면 setTodos 내에 consoloe.log를 추가하거나 todos에 대한 useEffect를 만든다.
 	console.log(toDos);
+
+	const deleteBtn = (index) => {
+		setToDos(toDos.filter((item, todoIndex) => index !== todoIndex));
+	};
+
 	return (
 		<div>
 			<h1>My ToDos List : {toDos.length}</h1>
@@ -47,7 +52,10 @@ function App() {
 				{
 					// 컴포넌트dptj 리스트를 렌더할 때는 key라는 Prop를 넣어야 한다.
 					toDos.map((item, index) => (
-						<li key={index}>{item}</li>
+						<li key={index}>
+							{item}
+							<button onClick={() => deleteBtn(index)}>❌</button>
+						</li>
 					))
 				}
 			</ul>
