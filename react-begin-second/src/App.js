@@ -41,6 +41,16 @@ function App() {
 				/>
 				<button>confirm</button>
 			</form>
+			<hr />
+
+			<ul>
+				{
+					// 컴포넌트dptj 리스트를 렌더할 때는 key라는 Prop를 넣어야 한다.
+					toDos.map((item, index) => (
+						<li key={index}>{item}</li>
+					))
+				}
+			</ul>
 		</div>
 	);
 }
