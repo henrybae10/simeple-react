@@ -14,26 +14,31 @@ function App() {
 
 	return (
 		<div>
-			<h1>The Coins! (count: {coins.length})</h1>
-			{loading ? <strong>Loading...</strong> : null}
-			<select>
-				{coins.map((coin, index) => {
-					return (
-						<option key={index}>
-							{coin.name} ({coin.symbol})
-						</option>
-					);
-				})}
-			</select>
-			<ul>
-				{coins.map((coin, index) => {
-					return (
-						<li key={index}>
-							{coin.name} ({coin.symbol})
-						</li>
-					);
-				})}
-			</ul>
+			<h1>The Coins! {loading ? "" : `(count: ${coins.length})`}</h1>
+			{loading ? (
+				<strong>Loading...</strong>
+			) : (
+				<div>
+					<select>
+						{coins.map((coin, index) => {
+							return (
+								<option key={index}>
+									{coin.name} ({coin.symbol})
+								</option>
+							);
+						})}
+					</select>
+					<ul>
+						{coins.map((coin, index) => {
+							return (
+								<li key={index}>
+									{coin.name} ({coin.symbol})
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			)}
 		</div>
 	);
 }
